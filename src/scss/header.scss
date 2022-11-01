@@ -1,0 +1,47 @@
+$black_color: #000000;
+
+
+header {
+  background-color: $black_color;
+  padding: 24px 0;
+  margin-bottom: 100px;
+  font-family: 'Museo Cyrl';
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  .movie-app {
+    margin-top: 5px;
+    margin-left: 20px;
+    span {
+      color: #007efd;
+      font-size: 24px;
+      font-weight: 700;
+    }
+  }
+  button {
+    color: white;
+    background-color: black;
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+      color: #007efd;
+      background-color: white;
+      transition: 1s;
+    }
+  }
+  .button-search {
+    padding-right: 18px;
+  }
+}
+
+.ipt_search {
+  padding: 7px 15px;
+  border-style: none;
+  border-image: initial;
+  background: rgb(248, 249, 250);
+  border-radius: 10px;
+
+}
