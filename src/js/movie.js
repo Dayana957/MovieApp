@@ -6,10 +6,16 @@ export class Movie {
         renderMovie: function ({poster_path, original_title, release_date, vote_average}) {
             return `
             <div class="movie">
-                <img src="${loadImg(poster_path)}" alt="${original_title}"> 
-                <div class="movie_popularity">${Math.round(vote_average/0.1)}/100</div>
+                <div class="movie-img">
+                    <img src="${loadImg(poster_path)}" alt="${original_title}"> 
+                </div>
+                <div class="movie-content">
+                <div class="movie-inform">
+                    <div class="movie_popularity">${Math.round(vote_average/0.1)}/100</div>
+                    <div class="movie_release_data">${new Date(release_date).toShortFormat()}</div>
+                </div>
                 <div class="movie_titel">${original_title}</div>
-                <div class="movie_release_data">${new Date(release_date).toShortFormat()}</div>
+                </div>
             </div>            
             `
         }
