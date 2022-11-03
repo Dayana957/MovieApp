@@ -1,0 +1,23 @@
+footer {
+  background-color: black;
+  color: white;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  margin-top: 120px;
+  .footer-header {
+    font-family: 'Museo Cyrl';
+    display: flex;
+    justify-content: space-between;
+    .logo-footer {
+      margin-left: 20px;
+      span {
+        color: #007efd;
+        font-size: 40px;
+        font-weight: 700;
+      }
+    }
+    .copyright-footer{
+      margin-right: 10px;
+    }
+  }
+}

@@ -1,2 +1,22 @@
 @import "~normalize.css";
+@import "./footer";
+@import "./header";
+@import "./movie";
+@font-face {
+  font-family: 'Museo Cyrl';
+  src: local('Museo Cyrl 500'), local('MuseoCyrl-500'),
+  url('../assets/fonts/Museocyrl500.woff2') format('woff2'),
+  url('../assets/fonts/Museocyrl500.woff') format('woff'),
+  url('../assets/fonts/Museocyrl500.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
 
+body {
+  background-color: #2073c4;
+}
+.popular, .top-rated, .upcoming{
+  max-width: 1200px;
+  margin: auto;
+  font-family: 'Museo Cyrl';
+}
