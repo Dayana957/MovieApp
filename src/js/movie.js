@@ -1,23 +1,71 @@
-import { loadImg } from "./utils";
+import {convertData, convertRate, loadImgOriginal, loadImgW200} from "./utils";
+import {ProductionCard} from "./production";
 
 export class Movie {
 
     templates = {
-        renderMovie: function ({poster_path, original_title, release_date, vote_average}) {
+        renderMovieCard: function ({id, poster_path, original_title, release_date, vote_average}) {
             return `
             <div class="movie">
-                <div class="movie-img">
-                    <img src="${loadImg(poster_path)}" alt="${original_title}"> 
-                </div>
+                <a href="#movieId=${id}">
+                    <div class="movie-img">
+                        <img src="${loadImgW200(poster_path)}" alt="${original_title}"> 
+                    </div>
+                </a>
                 <div class="movie-content">
-                <div class="movie-inform">
-                    <div class="movie_popularity">${Math.round(vote_average/0.1)}/100</div>
-                    <div class="movie_release_data">${new Date(release_date).toShortFormat()}</div>
-                </div>
-                <div class="movie_titel">${original_title}</div>
+                    <div class="movie-inform">
+                        <div class="movie_popularity">${convertRate(vote_average)}/100</div>
+                        <div class="movie_release_data">${convertData(release_date)}</div>
+                    </div>
+                    <div class="movie_titel">${original_title}</div>
                 </div>
             </div>            
             `
+        },
+        renderFullMovieDetails: function ({backdrop_path, original_title, overview, vote_average, release_date, status, production_companies}) {
+            const prodCard = new ProductionCard(production_companies);
+
+            return `
+            <div class="movie-details">
+                <div class="movie-img">
+                    <img src="${loadImgOriginal(backdrop_path)}" alt="${original_title}"> 
+                </div>
+                <div>
+                    <div>
+                        <div>${original_title}</div>
+                        <div class="movie_popularity">${convertRate(vote_average)}/100</div>
+                        <div class="movie_release_data">${convertData(release_date)}</div>
+                        <div>
+                            <p>Status: ${status}</p>
+                        </div>
+                        <div>
+                            <p>${overview}</p>
+                        </div>
+                        <div>
+                            <h4>Porduction</h4>
+                            <div>
+                                ${prodCard.renderProductionCard()}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+        },
+        renderSmallMovieDetails: function ({id, poster_path, original_title, release_date, vote_average, status, overview}) {
+            return `
+            <div class="movie-small-details">
+                ${this.renderMovieCard({id, poster_path, original_title, release_date, vote_average})}  
+                <div>
+                     <div>
+                            <p>Status: ${status}</p>
+                     </div>
+                     <div>
+                            <p>${overview}</p>
+                     </div>
+                </div>
+            </div>
+            `;
         }
     }
 
@@ -25,23 +73,15 @@ export class Movie {
         this.data = data;
     }
 
-    render() {
-       return this.templates.renderMovie(this.data)
+    renderMovieCard() {
+       return this.templates.renderMovieCard(this.data)
     }
-}
 
-Date.prototype.toShortFormat = function() {
+    renderFullMovieDetails() {
+        return this.templates.renderFullMovieDetails(this.data)
+    }
 
-    const monthNames = ["Jan", "Feb", "Mar", "Apr",
-        "May", "Jun", "Jul", "Aug",
-        "Sep", "Oct", "Nov", "Dec"];
-
-    const day = this.getDate();
-
-    const monthIndex = this.getMonth();
-    const monthName = monthNames[monthIndex];
-
-    const year = this.getFullYear();
-
-    return `${day} ${monthName} ${year}`;
+    renderSmallMovieDetails() {
+        return this.templates.renderSmallMovieDetails(this.data);
+    }
 }
