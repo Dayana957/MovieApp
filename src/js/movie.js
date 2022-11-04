@@ -4,7 +4,7 @@ import {ProductionCard} from "./production";
 export class Movie {
 
     templates = {
-        renderMovieCard: function ({id, poster_path, original_title, release_date, vote_average}) {
+        renderMovieCard: ({id, poster_path, original_title, release_date, vote_average}) => {
             return `
             <div class="movie">
                 <a href="#movieId=${id}">
@@ -17,12 +17,12 @@ export class Movie {
                         <div class="movie_popularity">${convertRate(vote_average)}/100</div>
                         <div class="movie_release_data">${convertData(release_date)}</div>
                     </div>
-                    <div class="movie_titel">${original_title}</div>
+                    <div class="movie_title">${original_title}</div>
                 </div>
             </div>            
             `
         },
-        renderFullMovieDetails: function ({backdrop_path, original_title, overview, vote_average, release_date, status, production_companies}) {
+        renderFullMovieDetails: ({backdrop_path, original_title, overview, vote_average, release_date, status, production_companies}) => {
             const prodCard = new ProductionCard(production_companies);
 
             return `
@@ -30,20 +30,20 @@ export class Movie {
                 <div class="movie-img">
                     <img src="${loadImgOriginal(backdrop_path)}" alt="${original_title}"> 
                 </div>
-                <div>
-                    <div>
-                        <div>${original_title}</div>
+                <div class="info-content">
+                    <div class="content-info-movie">
+                        <div class="main-movie-title">${original_title}</div>
                         <div class="movie_popularity">${convertRate(vote_average)}/100</div>
                         <div class="movie_release_data">${convertData(release_date)}</div>
                         <div>
-                            <p>Status: ${status}</p>
+                            <p class="status">Status:<span>${status}</span></p>
                         </div>
                         <div>
                             <p>${overview}</p>
                         </div>
-                        <div>
+                        <div class="movie-production">
                             <h4>Porduction</h4>
-                            <div>
+                            <div class="production-img">
                                 ${prodCard.renderProductionCard()}
                             </div>
                         </div>
@@ -52,15 +52,15 @@ export class Movie {
             </div>
             `
         },
-        renderSmallMovieDetails: function ({id, poster_path, original_title, release_date, vote_average, status, overview}) {
+        renderSmallMovieDetails: ({id, poster_path, original_title, release_date, vote_average, status, overview}) => {
             return `
             <div class="movie-small-details">
-                ${this.renderMovieCard({id, poster_path, original_title, release_date, vote_average})}  
-                <div>
-                     <div>
-                            <p>Status: ${status}</p>
+                ${this.renderMovieCard( {id, poster_path, original_title, release_date, vote_average})}  
+                <div class="info-content-search">
+                     <div class="status-search">
+                            <p class="status">Status:<span>${status}</span></p>
                      </div>
-                     <div>
+                     <div class="info-movie-search">
                             <p>${overview}</p>
                      </div>
                 </div>

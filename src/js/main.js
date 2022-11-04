@@ -6,7 +6,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     searchBtn.addEventListener('click', event => {
         let movieName = searchIpt.value;
+        location.hash = '#search=' + movieName;
         getSearchMoves(".root", movieName);
+    });
+
+    searchIpt.addEventListener('keyup', event => {
+        if (event.which === 13) {
+            let movieName = searchIpt.value;
+            location.hash = '#search=' + movieName;
+            getSearchMoves(".root", movieName);
+        }
+
     })
 
 });
@@ -20,9 +30,11 @@ function checkURL() {
 
     if (locationHash[0] !== "#") getMovies(".root", ['popular', 'top_rated', 'upcoming']);
 
-    const [hash, movieId] = locationHash.split("=");
+    const [hash, key] = locationHash.split("=");
 
-    if (hash === '#movieId') getMovieDetails(".root", movieId);
+    if (hash === '#movieId') getMovieDetails(".root", key);
+
+    if (hash === '#search') getSearchMoves(".root", key);
 }
 
 checkURL();

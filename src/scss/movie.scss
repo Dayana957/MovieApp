@@ -13,15 +13,17 @@
   .movie {
     max-width: 200px;
     margin: 0 15px 25px 0;
-    img {
-      border-radius: 30px;
-      -webkit-box-shadow: 13px 11px 41px 11px rgba(0, 0, 0, 0.75);
-      -moz-box-shadow: 13px 11px 41px 11px rgba(0, 0, 0, 0.75);
-      box-shadow: 13px 11px 41px 11px rgba(0, 0, 0, 0.75);
-      cursor: pointer;
-      &:hover {
-        transition: filter 0.5s linear;
-        filter: blur(2px)
+    .movie-img{
+      img {
+        border-radius: 30px;
+        -webkit-box-shadow: 13px 11px 41px 11px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 13px 11px 41px 11px rgba(0, 0, 0, 0.75);
+        box-shadow: 13px 11px 41px 11px rgba(0, 0, 0, 0.75);
+        cursor: pointer;
+        &:hover {
+          transition: filter 0.5s linear;
+          filter: blur(2px)
+        }
       }
     }
     .movie-inform {
@@ -30,7 +32,7 @@
       margin-bottom: 10px;
       text-shadow: 4px 2px 4px #000000;
     }
-    .movie_titel {
+    .movie_title {
       text-align: center;
       font-size: 18px;
       font-weight: 600;
@@ -49,3 +51,151 @@
     }
   }
 }
+
+.movie-details {
+  max-width: 1300px;
+  margin: auto;
+
+  .movie-img {
+    background: black;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-image: url("../assets/images/play.png");
+    background-repeat: no-repeat;
+    background-position: center;
+
+    img {
+      max-width: 1300px;
+      display: block;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      transition: filter 0.5s linear;
+      filter: brightness(2) grayscale(1) opacity(0.3);
+      cursor: pointer;
+
+      &:hover {
+        filter: none;
+      }
+    }
+  }
+    .content-info-movie {
+      font-family: 'Museo Cyrl';
+      background-color: black;
+      color: white;
+      padding: 50px 60px;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      .main-movie-title {
+        font-size: 25px;
+        margin-bottom: 15px;
+        text-shadow: 4px 2px 10px #DFDFDF;
+      }
+      .movie_popularity {
+        color: #007efd;
+        background-color: white;
+        max-width: 55px;
+        padding: 4px;
+        text-align: center;
+        border-radius: 9px;
+        margin-bottom: 10px;
+      }
+      .movie_release_data {
+        font-size: 14px;
+      }
+      .status {
+        margin-bottom: 40px;
+        span {
+          color: #007efd;
+          background-color: white;
+          max-width: 55px;
+          padding: 4px;
+          text-align: center;
+          border-radius: 9px;
+          margin-left: 3px;
+        }
+      }
+      .movie-production {
+        margin-top: 10px;
+        .production-img {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+    }
+}
+
+.movie-small-details {
+  font-family: 'Museo Cyrl';
+  max-width: 1380px;
+  margin: auto;
+  display: flex;
+  align-items: flex-start;
+  .movie {
+    max-width: 200px;
+    margin: 0 15px 25px 0;
+    img {
+      border-radius: 30px;
+      -webkit-box-shadow: 13px 11px 41px 11px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 13px 11px 41px 11px rgba(0, 0, 0, 0.75);
+      box-shadow: 13px 11px 41px 11px rgba(0, 0, 0, 0.75);
+      cursor: pointer;
+    }
+    .movie-inform {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      text-shadow: 4px 2px 4px #000000;
+    }
+
+    .movie_title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      text-shadow: 4px 2px 10px #DFDFDF;
+    }
+
+    .movie_popularity {
+      color: gray;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .movie_release_data {
+      color: gray;
+      margin-top: 5px;
+      font-size: 10px;
+    }
+  }
+}
+  .info-content-search {
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    background-color: rgb(0 0 0 / 75%);
+    color: rgb(248 249 250);
+    &:hover {
+        border: 2px solid white;
+        transition: 0.1s;
+    }
+    .status {
+      margin-bottom: 40px;
+      span {
+        color: #007efd;
+        background-color: white;
+        max-width: 55px;
+        padding: 4px;
+        text-align: center;
+        border-radius: 9px;
+        margin-left: 3px;
+      }
+    }
+    .status-search {
+      padding-top: 10px;
+      margin-bottom: 50px;
+    }
+  }
+
+
