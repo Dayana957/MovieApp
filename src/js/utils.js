@@ -1,28 +1,28 @@
-import { API_PATH, KEY_PARAM, IMG_PATH } from "./constants";
-import { Movie } from "./movie";
+import {MOVIE_API_PATH, KEY_PARAM, IMG_PATH, SEARCH_MOVIE_API_PATH} from "./constants";
 
-const generateUrl = path => `${API_PATH}${path}${KEY_PARAM}`;
+export const generateMovieUrl = path => `${MOVIE_API_PATH}/${path}?${KEY_PARAM}`;
+export const generateSearchMovieUrl = movieName => `${SEARCH_MOVIE_API_PATH}?query=${movieName}&${KEY_PARAM}`;
+export const loadImgW200 = imgPath => `${IMG_PATH}w200${imgPath}`;
+export const loadImgOriginal = imgPath => `${IMG_PATH}original${imgPath}`;
+export const convertRate = rate => Math.round(rate / 0.1);
+export const convertData = data => new Date(data).toShortFormat();
+export const generateTitle = str => {
+    const title = str.replaceAll('_', ' ');
+    return title[0].toUpperCase() + title.slice(1);
+}
 
-export const loadImg = imgPath => `${IMG_PATH}${imgPath}`;
+Date.prototype.toShortFormat = function() {
+    const monthNames = ["Jan", "Feb", "Mar", "Apr",
+        "May", "Jun", "Jul", "Aug",
+        "Sep", "Oct", "Nov", "Dec"];
 
-export const fetchRequest = (path, selector, title) => {
-    fetch(generateUrl(path))
-        .then(res => res.json())
-        .then(data => data.results)
-        .then(results => renderMovies(results, selector, title));
-};
+    const day = this.getDate();
 
-function renderMovies(results, selector, title) {
-    let container = document.querySelector(selector);
+    const monthIndex = this.getMonth();
+    const monthName = monthNames[monthIndex];
 
-    let titleH2 = `<h2 class="movie-header">${title}</h2>`
+    const year = this.getFullYear();
 
-    const movies = results.map(({poster_path, original_title, release_date, vote_average}) => {
-        const movie = new Movie({poster_path, original_title, release_date, vote_average});
-        return movie.render();
-    }).join('');
-
-    container.innerHTML = `<div class="movie-flex">${movies}</div>`;
-    container.insertAdjacentHTML("afterbegin", titleH2);
+    return `${day} ${monthName} ${year}`;
 }
 
